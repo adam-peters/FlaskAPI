@@ -1,12 +1,13 @@
 from bs4 import BeautifulSoup
 import requests
 
-html_text = requests.get('https://www.walkscore.com/cities-and-neighborhoods/').text
+# city = input("Name a City in California: ")
+city = "Riverside"
+
+html_text = requests.get('https://www.walkscore.com/CA/' + city).text
 soup = BeautifulSoup(html_text, 'lxml')
 
-block = soup.find_all('div', class_='mag-block')[1]
+scores = soup.find_all('img')
 
-titles = block.find_all('h2')
-
-for title in titles:
-    print(title.text)
+for score in scores:
+    print(score)
